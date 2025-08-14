@@ -9,10 +9,15 @@ import { errorHandler } from "./middleware/errorMiddleware";
 dotenv.config();
 const app = express();
 
-app.use(cors({
-  origin: "http://localhost:5173", // React dev server
-  credentials: true,               // allow cookies
-}));
+app.use(
+  cors({
+    origin: [process.env.FRONTEND_URL, process.env.LOCAL_FRONTEND_URL].filter(
+      Boolean
+    ) as string[], // ensures only strings remain
+    credentials: true,
+  })
+);
+
 
 app.use(express.json());
 app.use(cookieParser());
