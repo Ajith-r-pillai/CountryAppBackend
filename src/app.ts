@@ -11,9 +11,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL, process.env.LOCAL_FRONTEND_URL].filter(
-      Boolean
-    ) as string[], // ensures only strings remain
+    origin: [
+      process.env.FRONTEND_URL!,
+      process.env.LOCAL_FRONTEND_URL!,
+    ],
     credentials: true,
   })
 );
